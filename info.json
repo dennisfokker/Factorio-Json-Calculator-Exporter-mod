@@ -1,0 +1,10 @@
+{
+"name":"JsonCalculatorExporter",
+"version": "1.0.0",
+"title":"Calculator-relevant Data Exporter to JSON",
+"author":"Th3DutchGuy",
+"homepage":"https://github.com/dennisfokker/Factorio-Json-Calculator-Exporter-mod",
+"description":"Gathers set amount of data during data-final-fixes phase, allowing it to also retrieve icon paths.\nCurrently gathers set bits of data regarding recipes, items, fluids, assembling machines, furnaces, mining drills, offshore pumps, modules and item groups.\nThe JSON export is contained in Factorio's log, so you'll still need to automate some form of extraction from there.\nNot relevant for data in this export (as of time of writing), but some values in data.raw use infinity. The JSON parses used converts this to `(-)inf` as a value, which is invalid JSON. Make sure to perform a simple replace on this to something sensible for your usecase, eg. 0 or \"inf\".",
+"factorio_version":"1.0",
+"dependencies":["base >= 1.0"]
+}
