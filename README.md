@@ -23,7 +23,7 @@ As I couldn't figure out how to actually run the lua scripts through JS/TS, I op
 
 Web version is discontinued (for now) since I simply couldn't be bothered having to download the mod zips (and either download the base game or include base game icons) and unzip and handle all the icons.
 * Web version: https://github.com/dennisfokker/FactorioCalculator
-* Desktop version: Repo to be made.
+* Desktop version: https://github.com/dennisfokker/FactorioCalculatorElectron
 
 # Contributing
 There's only a single file you'll really want to edit: `data-final-fixes.lua`. All this file does is read `data.raw`, take out the relevant information to a new table and log the parsed JSON.
