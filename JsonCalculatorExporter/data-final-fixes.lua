@@ -11,23 +11,12 @@ jsonData["mining-drill"] = {};
 jsonData["offshore-pump"] = {};
 jsonData["module"] = {};
 jsonData["item-group"] = {};
-
--- Define export types we "support". Essentially identical to above only with true as value.
-availableTypes = {};
-availableTypes["recipe"] = true;
-availableTypes["item"] = true;
-availableTypes["fluid"] = true;
-availableTypes["assembling-machine"] = true;
-availableTypes["furnace"] = true;
-availableTypes["mining-drill"] = true;
-availableTypes["offshore-pump"] = true;
-availableTypes["module"] = true;
-availableTypes["item-group"] = true;
+jsonData["item-subgroup"] = {};
 
 -- For every kind of prototype
 for type,prototypes in pairs(data.raw) do
-    -- Only if we actually want to export this kind/type
-    if availableTypes[type] then
+    -- Only if we actually want to export this kind/type (predefined)
+    if jsonData[type] then
         -- For every prototype of said kind/type
         for _,prototype in pairs(prototypes) do
             -- Data we'll add to our export object
@@ -39,8 +28,8 @@ for type,prototypes in pairs(data.raw) do
             curData.name = prototype.name;
             curData.type = prototype.type;
 
-            -- Field only not present in "item group" type
-            if type ~= "item-group" then
+            -- Field only not present in "item (sub)group" type
+            if type ~= "item-group" and type ~= "item-subgroup" then
                 curData.subgroup = prototype.subgroup;
             end
 
@@ -85,6 +74,9 @@ for type,prototypes in pairs(data.raw) do
                 curData.effect = prototype.effect;
                 curData.tier = prototype.tier;
                 curData.limitation = prototype.limitation;
+            end
+            if type == "item-subgroup" then
+                curData.group = prototype.group;
             end
 
             -- Add the constructed data object to our export under the same prototype type
