@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 2021.12.04
+  Added:
+    - all item child-types as items
+  Changes:
+    - recipe now always contains icon and subgroup (following rules dictated by wiki)
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2021.12.04
   Added:

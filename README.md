@@ -11,7 +11,7 @@ Currently gathers set bits of data regarding:
 * Mining drills
 * Offshore pumps
 * Modules
-* Item groups
+* Item (sub)groups
 
 The JSON export is contained in Factorio's log, so you'll still need to automate some form of extraction from there.
 Not relevant for data in this export (as of time of writing), but some values in `data.raw` use infinity. The JSON parses used converts this to `(-)inf` as a value, which is invalid JSON. Make sure to perform a simple replace on this to something sensible for your usecase, eg. `0` or `"inf"`.
