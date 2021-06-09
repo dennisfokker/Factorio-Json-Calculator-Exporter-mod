@@ -28,6 +28,7 @@ jsonItemData["tool"] = 0;
 jsonItemData["armor"] = 0;
 jsonItemData["mining-tool"] = 0;
 jsonItemData["repair-tool"] = 0;
+jsonItemData["fluid"] = 0; -- Technically not an item, but for calculator purposes it's close enough
 
 -- For every kind of prototype
 for type,prototypes in pairs(data.raw) do
@@ -140,6 +141,12 @@ for type,prototypes in pairs(data.raw) do
             end
             if type == "item-subgroup" then
                 curData.group = prototype.group;
+            end
+            if type == "fluid" then
+                curData.default_temperature = prototype.default_temperature;
+                curData.max_temperature = prototype.max_temperature;
+                curData.fuel_value = prototype.fuel_value;
+                curData.heat_capacity = prototype.heat_capacity;
             end
 
             -- Add the constructed data object to our export under the same prototype type, if this wasn't an exclusive item type object
