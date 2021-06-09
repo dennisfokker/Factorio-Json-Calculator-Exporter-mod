@@ -23,6 +23,7 @@ jsonItemData["item-with-label"] = 0;
 jsonItemData["item-with-inventory"] = 0;
 jsonItemData["item-with-tags"] = 0;
 jsonItemData["module"] = 0;
+jsonItemData["rail-planner"] = 0;
 jsonItemData["spidertron-remote"] = 0;
 jsonItemData["tool"] = 0;
 jsonItemData["armor"] = 0;
@@ -147,6 +148,10 @@ for type,prototypes in pairs(data.raw) do
                 curData.max_temperature = prototype.max_temperature;
                 curData.fuel_value = prototype.fuel_value;
                 curData.heat_capacity = prototype.heat_capacity;
+                -- Make sure that a nil subgroup is properly adjusted to the default
+                if curData.subgroup == nil then
+                    curData.subgroup = "fluid"
+                end
             end
 
             -- Add the constructed data object to our export under the same prototype type, if this wasn't an exclusive item type object
