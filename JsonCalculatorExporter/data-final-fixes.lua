@@ -12,6 +12,7 @@ jsonData["offshore-pump"] = {};
 jsonData["module"] = {};
 jsonData["item-group"] = {};
 jsonData["item-subgroup"] = {};
+jsonData["resource"] = {};
 -- Additional export data objects which are added to the item list
 jsonItemData = {};
 jsonItemData["item"] = 0;
@@ -151,6 +152,24 @@ for type,prototypes in pairs(data.raw) do
                 -- Make sure that a nil subgroup is properly adjusted to the default
                 if curData.subgroup == nil then
                     curData.subgroup = "fluid"
+                end
+            end
+            if type == "resource" then
+                curData.category = prototype.category;
+                -- Make sure that a nil category is properly adjusted to the default
+                if curData.category == nil then
+                    curData.category = "basic-solid";
+                end
+                if prototype.minable == nil then
+                    curData.minable = false;
+                else
+                    curData.minable = true;
+                    curData.mining_time = prototype.minable.mining_time;
+                    curData.results = prototype.minable.results;
+                    curData.result = prototype.minable.result;
+                    curData.count = prototype.minable.count;
+                    curData.fluid_amount = prototype.minable.fluid_amount;
+                    curData.required_fluid = prototype.minable.required_fluid;
                 end
             end
 

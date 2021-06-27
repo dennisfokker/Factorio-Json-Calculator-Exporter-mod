@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.4.0
+Date: 2021.09.06
+  Added:
+    - Resource type
+---------------------------------------------------------------------------------------------------
 Version: 1.3.1
 Date: 2021.09.06
   Added:
@@ -9,19 +14,19 @@ Date: 2021.09.06
 Version: 1.3.0
 Date: 2021.09.06
   Added:
-    - fluid type (also present as item)
+    - Fluid type (also present as item)
 ---------------------------------------------------------------------------------------------------
 Version: 1.2.0
 Date: 2021.12.04
   Added:
-    - all item child-types as items
+    - All item child-types as items
   Changes:
-    - recipe now always contains icon and subgroup (following rules dictated by wiki)
+    - Recipe now always contains icon and subgroup (following rules dictated by wiki)
 ---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 2021.12.04
   Added:
-    - item subgroup type
+    - Item subgroup type
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 2021.05.04
@@ -32,4 +37,4 @@ Date: 2021.05.04
 Version: 1.0.0
 Date: 2020.29.12
   Changes:
-    - initial upload
+    - Initial upload
