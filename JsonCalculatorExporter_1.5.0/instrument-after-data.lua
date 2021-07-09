@@ -3,6 +3,7 @@ require("json")
 -- Define export data object
 jsonData = {};
 jsonData["recipe"] = {};
+jsonData["recipe-category"] = {};
 jsonData["item"] = {};
 jsonData["fluid"] = {};
 jsonData["assembling-machine"] = {};
@@ -46,11 +47,7 @@ for type,prototypes in pairs(data.raw) do
             curData.icon = prototype.icon;
             curData.name = prototype.name;
             curData.type = prototype.type;
-
-            -- Field only not present in "item (sub)group" type
-            if type ~= "item-group" and type ~= "item-subgroup" then
-                curData.subgroup = prototype.subgroup;
-            end
+            curData.subgroup = prototype.subgroup;
 
             -- Item-related part done. See if this should be added to the item list
             if jsonItemData[type] then
@@ -72,43 +69,41 @@ for type,prototypes in pairs(data.raw) do
                 curData.results = prototype.results;
 
                 -- Additional handling for subgroups/icons to take that of results/products in case the recipe does not have one defined itself
-                if curData.subgroup == nil then
-                    if curData.result ~= nil then
-                        -- Try from all item-type sources
-                        for itemType,__ in pairs(jsonItemData) do
-                            local item = data.raw[itemType][curData.result]
-                            if item ~= nil then
-                                curData.subgroup = item.subgroup
-                            end
-                        end
-                    else
-                        -- Try from all item-type sources
-                        for itemType,__ in pairs(jsonItemData) do
-                            local item = data.raw[itemType][curData.main_product]
-                            if item ~= nil then
-                                curData.subgroup = item.subgroup
-                            end
+                if curData.subgroup == nil or (curData.icons == nil and curData.icon == nil) then
+                    -- First try to get the item to steal the data from
+                    item = nil;
+                    searchObject = nil;
+                    -- Figure out what item name to search for
+                    if prototype.result ~= nil then
+                        searchObject = prototype.result;
+                    elseif prototype.main_product ~= nil then
+                        searchObject = prototype.main_product;
+                    elseif prototype.results ~= nil then
+                        searchObject = prototype.results[1].name;
+                    elseif prototype.normal ~= nil then
+                        if prototype.normal.result ~= nil then
+                            searchObject = prototype.normal.result;
+                        elseif prototype.normal.main_product ~= nil then
+                            searchObject = prototype.normal.main_product;
+                        elseif prototype.normal.results ~= nil then
+                            searchObject = prototype.normal.results[1].name;
                         end
                     end
-                end
-                if curData.icons == nil and curData.icon == nil then
-                    if curData.result ~= nil then
-                        -- Try from all item-type sources
-                        for itemType,__ in pairs(jsonItemData) do
-                            local item = data.raw[itemType][curData.result]
-                            if item ~= nil then
-                                curData.icons = item.icons
-                                curData.icon = item.icon
-                            end
+                    
+                    -- Try from all item-type sources
+                    for itemType,__ in pairs(jsonItemData) do
+                        if item == nil then
+                            item = data.raw[itemType][searchObject]
                         end
-                    else
-                        -- Try from all item-type sources
-                        for itemType,__ in pairs(jsonItemData) do
-                            local item = data.raw[itemType][curData.main_product]
-                            if item ~= nil then
-                                curData.icons = item.icons
-                                curData.icon = item.icon
-                            end
+                    end
+                    
+                    if item ~= nil then
+                        if curData.subgroup == nil then
+                            curData.subgroup = item.subgroup
+                        end
+                        if curData.icons == nil and curData.icon == nil then
+                            curData.icons = item.icons
+                            curData.icon = item.icon
                         end
                     end
                 end

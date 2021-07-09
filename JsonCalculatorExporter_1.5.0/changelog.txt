@@ -1,3 +1,11 @@
+Version: 1.5.0
+Date: 2021.09.07
+  Added:
+    - Recipe category type
+  Changes:
+    - Now only runs in instrument mode (Google it) since there's no guarantee data will be complete otherwise
+  Fixes:
+    - Subgroup and icon data for recipes now properly retrieved from results if not explicitly specified
 ---------------------------------------------------------------------------------------------------
 Version: 1.4.0
 Date: 2021.09.06
