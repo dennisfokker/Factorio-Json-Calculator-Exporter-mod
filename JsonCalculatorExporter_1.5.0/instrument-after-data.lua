@@ -49,9 +49,10 @@ for type,prototypes in pairs(data.raw) do
             curData.type = prototype.type;
             curData.subgroup = prototype.subgroup;
 
-            -- Item-related part done. See if this should be added to the item list
+            -- Do some final item-related stuff and add to the item list
             if jsonItemData[type] then
-                jsonData["item"][prototype.name] = curData
+                curData.stack_size = prototype.stack_size;
+                jsonData["item"][prototype.name] = curData;
             end
 
             -- Check and add fields for every other type in an inclusive manner
